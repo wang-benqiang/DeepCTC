@@ -1,0 +1,41 @@
+FROM harbor.miduchina.com/yjy/algorithm/midu_dl:base
+
+RUN apt-get update --fix-missing && apt-get install -y git
+RUN echo Asia/Shanghai > /etc/localtime && echo Asia/Shanghai > /etc/timezone && apt-get install tzdata
+RUN apt-get update --fix-missing && apt-get install -y vim
+
+RUN apt-get update --fix-missing && apt-get install --fix-missing -y openssh-server
+RUN mkdir -p /var/run/sshd
+RUN echo 'root:root' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+RUN cd /etc && mv bash.bashrc bash.bashrc.bak
+
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+
+COPY ./command /data/app/command
+COPY ./model /data/app/model
+# 下载模型
+COPY ./src /data/app/src
+
+
+COPY ./pretrained_model /data/app/pretrained_model
+COPY ./configs /data/app/configs
+COPY ./acllite /data/app/acllite
+
+COPY ./logs /data/app/logs
+
+COPY ./data /data/app/data
+COPY ./tests /data/app/tests
+COPY ./runner /data/app/runner
+
+RUN cd /data/app/command && sh download_ctc_model.sh
+
+
+EXPOSE 80
+
+CMD cd /data/app/ && pytest tests/unit_tests

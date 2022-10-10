@@ -1,0 +1,9 @@
+./model/checkpoint-6680/model.pt
+./model/checkpoint-100000/model.pt
+./model/checkpoint-6680/model.pt
+./model/checkpoint-6346/model.pt
+./model/checkpoint-6012/model.pt
+./model/checkpoint-100000/model.pt
+./model/checkpoint-1670/model.pt
+./model/checkpoint-1503/model.pt
+./model/checkpoint-1336/model.pt
