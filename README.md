@@ -3,7 +3,7 @@ CCL2022-CLTC赛道二解决方案
 
 ## 代码复现
 * 环境准备：pip install -r requirements.txt
-* 一键复现：cd ensemble_gector/command && sh ensemble.sh(结果文件保存在 ensemble_gector/logs/ensemble/cged.pred.txt)
+* 一键复现集成结果：cd ensemble_gector/command && sh ensemble.sh(结果文件保存在 ensemble_gector/logs/ensemble/cged.pred.txt)
 * 逐步复现：
   * 下载权重：在链接 https://pan.baidu.com/s/17j9J38HQYotgF0ghscCCcg 提取码: dxkd下载权重，将model_single.zip解压在common_gector文件夹下,将model_ensemble.zip解压在ensemble_gector文件夹下
   * 生成pipeline主模型结果： cd common_gector && sh ccl_2022_predict.sh 
