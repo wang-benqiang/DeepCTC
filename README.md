@@ -5,10 +5,10 @@ CCL2022-CLTC赛道二解决方案
 * 环境准备：pip install -r requirements.txt
 * 一键复现：cd ensemble_gector/command && sh ensemble.sh(结果文件保存在 ensemble_gector/logs/ensemble/cged.pred.txt)
 * 逐步复现：
-  * 在链接: https://pan.baidu.com/s/17j9J38HQYotgF0ghscCCcg 提取码: dxkd下载权重，将model_single解压在common_gector文件夹下,将model_ensemble解压在ensemble_gector文件夹下
-  * 生成pipeline主模型结果 cd common_gector && sh ccl_2022_predict.sh 
-  * 生成多个集成模型结果 cd ensemble_gector/command && sh inference_track2.sh
-  * 生成最终集成结果 cd ensemble_gector/command && sh ensemble.sh(结果文件保存在 ensemble_gector/logs/ensemble/cged.pred.txt)
+  * 下载权重：在链接 https://pan.baidu.com/s/17j9J38HQYotgF0ghscCCcg 提取码: dxkd下载权重，将model_single.zip解压在common_gector文件夹下,将model_ensemble.zip解压在ensemble_gector文件夹下
+  * 生成pipeline主模型结果： cd common_gector && sh ccl_2022_predict.sh 
+  * 生成多个集成模型结果： cd ensemble_gector/command && sh inference_track2.sh
+  * 生成最终集成结果： cd ensemble_gector/command && sh ensemble.sh(结果文件保存在 ensemble_gector/logs/ensemble/cged.pred.txt)
 ## 模型介绍
 我们提出了一种基于Seq2Edit模型的pipeline语法纠错方法。首先，针对赘余、 遗漏、误用、错序错误，我们分别构造了错字、多字少字、乱序的单个纠错模型。其次，我们利 用gector模型，采用不同的预训练方法训练多个统一模型。最后，我们采用多种集成方式对各个模 型进行了集成和融合。
 ![image](https://github.com/wang-benqiang/DeepCTC/blob/master/images/pipeline.png)
